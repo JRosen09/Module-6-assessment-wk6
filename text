@@ -1,0 +1,64 @@
+//Don’t forget the CSS and JS files, you can see the endpoints they’re requesting in public/index.html.?????????????
+//css and js files aren't connecting, i have no idea - google it nothing helps
+//throughwing an error in the console: Refused to apply style from 'http://localhost:3000/styles' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+//GET http://localhost:3000/js net::ERR_ABORTED 404 (Not Found
+//I have no idea
+//spent 2hrs tryihg to google and look through notes to figure it out...moving on with the understanding that i don't have all the pieces connected...
+//part 2 - there are 3 known bugs but i cant get that the webside to work to use the site and see any bugs
+
+//part 2 - 3 observations that don't work:
+See all bots button - not working
+Win count - not updating
+losses count - not working properlly
+when refreshing - losses count not resetting to zero
+
+Test Cases:
+
+1. Test case
+   Testing the “See all bots” button
+
+Description:
+This test will verify that the “See all bots” button generates all bots.
+Steps:
+Click on the “See all bots” button
+
+Test post conditions:
+I should see all Bots
+
+Links: http://localhost:3000/
+9/23/2022 – Jacob R
+mac 11.5.2
+chrome v104.05112.110
+
+2)Test Case
+Testing the “Wins” counter
+Description:
+This test will verify that the Wins are being counted after a win scenario
+Steps:
+a) Click on the draw button
+b) Choose two bots with high damage and high health
+If you loss
+Play again button and repeat step b)
+
+Test Post conditions:
+This test will verify that the “wins” count update according to wins
+Links: http://localhost:3000/
+9/23/2022 – Jacob R
+mac 11.5.2
+chrome v104.05112.110
+
+3)Test Case
+Testing the “wins” and “losses” counts reset
+
+Description:
+After pushing the refresh button at the top of the browser window
+
+Steps:
+After playing the game
+Click on the refresh button at the top left corner of the chrome web browser window
+
+Test Post conditions:
+The test will verify that the wins and losses counts will reset back to 0 integer
+9/23/2022 – Jacob R
+mac 11.5.2
+chrome v104.05112.110
