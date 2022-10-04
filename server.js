@@ -7,6 +7,14 @@ require("dotenv").config();
 
 app.use(express.json());
 
+//rollbar
+var Rollbar = require("rollbar");
+var rollbar = new Rollbar({
+  accessToken: "9f00122402894786b18135f0a550dcf8",
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+});
+
 //app.use(express.static(__dirname + "/public"));
 //app.use(express.static(`public`));
 
@@ -14,12 +22,23 @@ app.use("/", express.static(path.join(__dirname, "./public/index.html")));
 
 app.use(express.static(path.join(__dirname, "./public")));
 
-app.get;
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/public/index.html"));
+// });
+
+// app.get("/styles", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/public/index.css"));
+// });
+
+// app.get("/js", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/public/index.js"));
+// });
 
 app.get("/api/robots", (req, res) => {
   try {
     res.status(200).send(botsArr);
   } catch (error) {
+    rollbar.error(`bots didn't load!`);
     console.log("ERROR GETTING BOTS", error);
     res.sendStatus(400);
   }
@@ -31,7 +50,9 @@ app.get("/api/robots/five", (req, res) => {
     let choices = shuffled.slice(0, 5);
     let compDuo = shuffled.slice(6, 8);
     res.status(200).send({ choices, compDuo });
+    rollbar.log();
   } catch (error) {
+    rollbar.error("did Not load");
     console.log("ERROR GETTING FIVE BOTS", error);
     res.sendStatus(400);
   }
@@ -72,6 +93,7 @@ app.post("/api/duel", (req, res) => {
     }
   } catch (error) {
     console.log("ERROR DUELING", error);
+    rollbar.error(error);
     res.sendStatus(400);
   }
 });
